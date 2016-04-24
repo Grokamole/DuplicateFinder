@@ -3,18 +3,34 @@
 #include <boost/filesystem/fstream.hpp>
 #include <iostream>
 
+unsigned int DuplicateFinder::GetNumberOfDuplicates() const
+{
+    return numberOfDuplicates;
+}
+
+std::list<std::wstring>::const_iterator DuplicateFinder::Begin() const
+{
+    return duplicates.cbegin();
+}
+
+std::list<std::wstring>::const_iterator DuplicateFinder::End() const
+{
+    return duplicates.cend();
+}
+
 /*
 	FindDuplicates() searches inside a path and optional recursive subdirectories
 	for files that are byte-level duplicates.  It returns how many duplicates it has
 	found and copies the filenames into its list of wstrings: "duplicates"
 */
-unsigned int DuplicateFinder::FindDuplicates(std::wstring searchPath, bool includeSubDirectories)
+unsigned int DuplicateFinder::FindDuplicates(const std::wstring & searchPath,
+                                             const bool & includeSubDirectories)
 {
 	numberOfDuplicates = 0;
 	duplicates.clear();
-	
+
 	std::multimap<unsigned int, std::wstring> files; //a map for filenames
-	
+
 	//first, get a list of all files that we need to search through, including their file sizes
 	if(includeSubDirectories == true)
 	{
@@ -74,7 +90,7 @@ unsigned int DuplicateFinder::FindDuplicates(std::wstring searchPath, bool inclu
 								{
 									break; //move on to the next file
 								}
-							
+
 								//read in the next bytes
 								checking.read(&nextByte, sizeof(char));
 								original.read(&originalByte, sizeof(char));
@@ -90,7 +106,7 @@ unsigned int DuplicateFinder::FindDuplicates(std::wstring searchPath, bool inclu
 					}
 				}
 			}
-			
+
 			++mit;
 		}
 	}

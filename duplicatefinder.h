@@ -8,23 +8,17 @@
 
 class DuplicateFinder
 {
+	public:
+		unsigned int GetNumberOfDuplicates() const;
+		std::list<std::wstring>::const_iterator Begin() const;
+		std::list<std::wstring>::const_iterator End() const;
+		unsigned int FindDuplicates(const std::wstring & searchPath,
+                                    const bool & includeSubDirectories=false);
+
 	private:
 		unsigned int numberOfDuplicates{0};
 		std::list<std::wstring> duplicates;
-	public:
-		unsigned int GetNumberOfDuplicates()
-		{
-			return numberOfDuplicates;
-		}
-		std::list<std::wstring>::const_iterator Begin()
-		{
-			return duplicates.cbegin();
-		}
-		std::list<std::wstring>::const_iterator End()
-		{
-			return duplicates.cend();
-		}
-		unsigned int FindDuplicates(std::wstring searchPath, bool includeSubDirectories=false);
+
 };
 
 #endif // DUPLICATEFINDER_H_INCLUDED
