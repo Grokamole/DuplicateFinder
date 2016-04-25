@@ -1,3 +1,7 @@
+/*
+    Copyright Joseph Miller (c) 2014
+*/
+
 #ifndef DUPLICATEFINDER_H_INCLUDED
 #define DUPLICATEFINDER_H_INCLUDED
 
@@ -12,8 +16,8 @@ class DuplicateFinder
 		unsigned int GetNumberOfDuplicates() const;
 		std::list<std::wstring>::const_iterator Begin() const;
 		std::list<std::wstring>::const_iterator End() const;
-		unsigned int FindDuplicates(const std::wstring & searchPath,
-                                    const bool & includeSubDirectories=false);
+		unsigned int FindDuplicates( const std::wstring & searchPath,
+                                     const bool & includeSubDirectories = false );
 
 	private:
 		unsigned int numberOfDuplicates{0};
