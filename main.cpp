@@ -1,6 +1,12 @@
 /*
-    Copyright Joseph Miller (c) 2014
+    Copyright Joseph Miller (c) 2014-2016
 */
+/**
+    \file main.cpp
+    \brief This file holds the main() implementation.
+    \author Joseph Miller
+**/
+
 #include <iostream>
 #include <string>
 #include <cctype>
@@ -12,16 +18,16 @@
 
 #include "duplicatefinder.h"
 
-static const std::wstring DF_GET_VERSION_SHORT = L"-v";
-static const std::wstring DF_GET_VERSION_LONG = L"-version";
-static const std::wstring DF_VERSION = L"DuplicateFinder Version 1.0.2";
-static const std::wstring DF_CREATOR = L"Joseph P. Miller";
-static const std::wstring DF_SEARCH_RECURSIVELY = L"-r";
-static const std::wstring DF_CHANGE_OUTPUT_FILENAME = L"-o";
-static const std::wstring DF_GET_HELP_SHORT = L"-h";
-static const std::wstring DF_GET_HELP_QUESTIONMARK = L"-?";
-static const std::wstring DF_GET_HELP_LONG = L"-help";
-static const std::wstring DF_OUTPUT_TO_SCREEN = L"-s";
+static const std::wstring DF_GET_VERSION_SHORT = L"-v"; ///< The shortened version string to match.
+static const std::wstring DF_GET_VERSION_LONG = L"-version"; ///< The fill version string to match.
+static const std::wstring DF_VERSION = L"DuplicateFinder Version 1.0.3"; ///< The software version.
+static const std::wstring DF_CREATOR = L"Joseph P. Miller"; ///< The creator of the software.
+static const std::wstring DF_SEARCH_RECURSIVELY = L"-r"; ///< The recursive search string to match.
+static const std::wstring DF_CHANGE_OUTPUT_FILENAME = L"-o"; ///< The output to text filename string to match.
+static const std::wstring DF_GET_HELP_SHORT = L"-h"; ///< The shortened help string to match.
+static const std::wstring DF_GET_HELP_QUESTIONMARK = L"-?"; ///< The question mark help string to match.
+static const std::wstring DF_GET_HELP_LONG = L"-help"; ///< The help string to match.
+static const std::wstring DF_OUTPUT_TO_SCREEN = L"-s"; ///< The output to screen string to match.
 static const std::wstring DF_HELP_TEXT = L"--------------------\n"
 								  "DuplicateFinder Help\n"
 								  "--------------------\n"
@@ -33,9 +39,15 @@ static const std::wstring DF_HELP_TEXT = L"--------------------\n"
 								  "\"-r\" recursively searches subdirectories for duplicates\n"
 								  "\"-o filename.ext\" outputs the results to a specified filename (default is results.txt)\n"
 								  "\"-s\" outputs the results to the screen instead of a file\n";
-static const int MINIMUM_NUM_ARGUMENTS = 1;
-static const int NEXT_ARGUMENT = 1;
+								  ///< The help text to display.
+static const int MINIMUM_NUM_ARGUMENTS = 1; ///< The minimum number of arguments this program accepts.
+static const int NEXT_ARGUMENT = 1; ///< Used for denoting the next argument in a sequence.
 
+/**
+    \brief The main() function for this program.
+    \param argc The number of requested arguments during program execution.
+    \param argv The requested arguments.
+**/
 int main( int argc, char ** argv )
 {
     bool searchRecursively = false;

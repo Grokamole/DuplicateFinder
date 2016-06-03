@@ -1,31 +1,54 @@
 /*
-    Copyright Joseph Miller (c) 2014
+    Copyright Joseph Miller (c) 2014-2016
 */
+/**
+    \file duplicatefinder.cpp
+    \brief This file holds the declaration for the DuplicateFinder class.
+    \author Joseph Miller
+**/
 
 #include "duplicatefinder.h"
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <iostream>
+#include <map>
 
+/**
+    \brief This returns the number of duplicates found during the last call to FindDuplicates().
+    \return An unsigned integer reporting the number of found duplicates.
+**/
 unsigned int DuplicateFinder::GetNumberOfDuplicates() const
 {
     return numberOfDuplicates;
 }
 
+/**
+    \brief Retrieves an iterator to the beginning of the list of duplicates found during the last
+        call to FindDuplicates().
+    \return A constant iterator to the beginning of the duplicate list.
+**/
 std::list<std::wstring>::const_iterator DuplicateFinder::Begin() const
 {
     return duplicates.cbegin();
 }
 
+/**
+    \brief Retrieves an iterator to the (one past the) end of the list of duplicates found during
+        the last call to FindDuplicates().
+    \return A constant iterator to the (one past the) end of the duplicate list.
+**/
 std::list<std::wstring>::const_iterator DuplicateFinder::End() const
 {
     return duplicates.cend();
 }
 
-/*
-	FindDuplicates() searches inside a path and optional recursive subdirectories
-	for files that are byte-level duplicates.  It returns how many duplicates it has
-	found and copies the filenames into its list of wstrings: "duplicates"
+/**
+	\brief Searches inside a path and optional recursive subdirectories for files that are
+	byte-level duplicates.
+	\param searchPath The directory path to search inside.
+	\param includeSubDirectories Whether to recursively include subdirectories.
+	\return An unsigned integer representing how many duplicates it has found and copies the
+	filenames into its list of wstrings: "duplicates".
 */
 unsigned int DuplicateFinder::FindDuplicates( const std::wstring & searchPath,
                                               const bool & includeSubDirectories )
