@@ -12,6 +12,7 @@
 
 #include <list>
 #include <string>
+#include <map>
 
 /**
     \class DuplicateFinder duplicatefinder.h "duplicatefinder.h"
@@ -34,6 +35,8 @@ class DuplicateFinder
 	private:
 		unsigned int numberOfDuplicates{0}; ///< The number of duplicates found.
 		std::list<std::wstring> duplicates; ///< The list of duplicates.
+		/// The duplicate comparison function
+		unsigned int DuplicateComparison( const std::multimap<unsigned int, std::wstring> & files );
 };
 
 #endif // DUPLICATEFINDER_H_INCLUDED
